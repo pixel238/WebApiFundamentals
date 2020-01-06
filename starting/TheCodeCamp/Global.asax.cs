@@ -20,6 +20,8 @@ namespace TheCodeCamp
       GlobalConfiguration.Configure(WebApiConfig.Register);
       FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
       RouteConfig.RegisterRoutes(RouteTable.Routes);
-    }
+      //AutoMapperConfig.Configure();
+      //InitializeAutoMapper.Initialize();
+     }
   }
 }

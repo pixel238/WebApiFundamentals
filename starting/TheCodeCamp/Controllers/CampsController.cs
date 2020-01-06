@@ -22,15 +22,15 @@ namespace TheCodeCamp.Controllers
             _mapper = mapper;
         }
         [Route()]
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> Get(bool includeTalks =false)
         {
             try
             {
-                var result = await _repostiory.GetAllCampsAsync();
+                var result = await _repostiory.GetAllCampsAsync(includeTalks);
 
                 var mappedResult = _mapper.Map<IEnumerable<CampModel>>(result);
-                if (mappedResult == null)
-                    return NotFound();
+                //if (mappedResult == null)
+                  //  return NotFound();
                 return Ok(mappedResult);
             }
             catch(Exception ex)
@@ -40,11 +40,11 @@ namespace TheCodeCamp.Controllers
         }
 
         [Route("{moniker}")]
-        public async Task<IHttpActionResult> Get(String moniker)
+        public async Task<IHttpActionResult> Get(String moniker, bool includeTalks = false)
         {
             try
             {
-                var result = await _repostiory.GetCampAsync(moniker);
+                var result = await _repostiory.GetCampAsync(moniker, includeTalks);
                 if (result == null)
                     return NotFound();
                 return Ok(_mapper.Map<CampModel>(result));
